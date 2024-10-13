@@ -3,8 +3,8 @@ class Solution:
         # res = []
         # [1,2,3]
         subset = []
+        res = []
         def dfs(i):
-            res = []
             if i >= len(nums):
                 res.append(subset.copy())
                 return 
@@ -13,7 +13,8 @@ class Solution:
 
             subset.pop()
             dfs(i+1)
-        return dfs(0)
+        dfs(0)
+        return res
 
         # def backtracking(input):
         #     if input 
