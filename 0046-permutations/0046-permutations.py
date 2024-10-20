@@ -1,18 +1,32 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
+        # perms = [[]]
+        # res = []
+        # for n in nums:
+        #     subset = []
+        #     for p in perms:
+        #         for i in range(len(perms) + 1):
+        #             subsetCopy = p.copy()
+        #             subsetCopy.insert(i,n)
+        #             res.append(subset.copy)
+        #     perms.append(subset)
 
-
-        def backtrack(start):
-            if start == len(nums):
-                res.append(nums[:])
-                return
-            
-            for i in range(start, len(nums)):
-                nums[start], nums[i] = nums[i], nums[start]
-                backtrack(start + 1)
-                nums[start], nums[i] = nums[i], nums[start]
-
+        # # [] 3  32 23   132  312 321.      123 213 231
+        # return res
+       
+        if len(nums) == 0: return [[]]
+        perms = self.permute(nums[1:])
         res = []
-        backtrack(0)
+        # for n in nums:
+        #     subset = []
+        for p in perms:
+            for i in range(len(p) + 1):
+                subsetCopy = p.copy()
+                subsetCopy.insert(i,nums[0])
+                res.append(subsetCopy)
         return res
-        #  1 2 3
+
+
+        # [] 3  32 23   132  312 321.      123 213 231
+        # return res
+                    
