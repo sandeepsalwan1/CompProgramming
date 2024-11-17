@@ -1,18 +1,17 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        res = 0
-        charSet = set(s)
-
-        for c in charSet:
-            count = l = 0
-            for r in range(len(s)):
-                if s[r] == c:
-                    count += 1
-
-                while (r - l + 1) - count > k:
-                    if s[l] == c:
-                        count -= 1
-                    l += 1
-                    
-                res = max(res, r - l + 1)
+        if not s: return 0
+        res = 1
+        for c in range(len(s)):
+            newDict = {}
+            newDict[s[c]] = newDict.get(s[c],0) + 1
+            for r in range(c+1, len(s)):
+                newDict[s[r]] = newDict.get(s[r],0) + 1
+                input = list(newDict.values())
+                print(input)
+                input.sort(reverse = True)
+                if(len(input) > 1 and (sum(input)-input[0]) > k): 
+                    break
+                inputVal = sum(input)
+                res = max(res, inputVal)
         return res
