@@ -13,7 +13,7 @@
 <pre>
 <strong>Input:</strong> root = [1,2,2,3,3,null,null,4,4]
 <strong>Output:</strong> false
-</pre>
+</pre> 
 
 <p><strong class="example">Example 3:</strong></p>
 
