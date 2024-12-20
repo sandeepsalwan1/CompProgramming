@@ -8,7 +8,7 @@
 <pre>
 <strong>Input:</strong> nums = [1,2,3]
 <strong>Output:</strong> [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
-</pre>
+</pre> 
 
 <p><strong class="example">Example 2:</strong></p>
 
