@@ -28,3 +28,11 @@ class Solution:
         #         # res = max(res, sum(nums[i:j+1]))
         #         res = max(curSum,res)
         # return res
+
+                # res = nums[0] 
+        # total = 0
+        # for n in nums:
+        #     if total < 0:
+        #         total = 0
+        #     total+=n
+        #     res = max(total,res)
