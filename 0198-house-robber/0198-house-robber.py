@@ -1,16 +1,29 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        nums.append(0)
-        rob1,rob2 = 0,0
-        for i in range (len(nums) -3, -1,-1):
-            nums[i] = max(nums[i+1],nums[i]+ nums[i+2])
-        return max(nums[0],nums[1])
-        # for n in nums:
-        #     temp = max(n+rob1,rob2)
-        #     rob1 = rob2
-        #     rob2 = n 
-        # # 1 23 1 
-        # # 1 2 3 1 1000 5 2
-        # #rob1, rob2 = 0,1 
 
-        # return max(nums[0] + self.rob(nums[2:]), self.rob(nums[1:]))
+    # basecase: the robber is [1,2,3,1]
+    # 2 cases: 
+    # take = max(nums[i]+nums[i+2], nums(i+1)), i < len(nums)
+    # stay = 0+1, i+1
+
+
+
+
+    def rob(self, nums: List[int]) -> int:
+        @cache
+        def recursive(i):
+            if  i >= len(nums): return 0
+            return max(recursive(i+1), recursive(i+2) + nums[i])
+            # take = 0
+
+            # stay = recursive(i+1, x)
+        return recursive(0)
+        # robber1,robber2 = 0,nums[0]
+
+        # for i in range(1,len(nums)):
+        #     robber1, robber2 = robber2, max(robber2, robber1+ nums[i])
+        
+        # return robber2
+        
+"""
+
+"""
