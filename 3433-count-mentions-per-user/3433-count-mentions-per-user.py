@@ -1,36 +1,32 @@
-from collections import defaultdict
-
 class Solution:
     def countMentions(self, numberOfUsers: int, events: List[List[str]]) -> List[int]:
+        res = [0] * numberOfUsers
+        messageEvents = []
+        offlineHash = defaultdict(list)
+        for first,second,third in events:
+            if first == "OFFLINE":
+                offlineHash[int(third)].append(int(second))
+            else:
+                messageEvents.append([first,second,third])
+        for first,second,third in messageEvents:
+            second = int(second)
+            if third == "ALL":
+                for idx in range(numberOfUsers):
+                    res[idx] +=1 
+            elif third == "HERE":
+                for idx in range(numberOfUsers):
+                    # if (idx not in hash or all(second <= x or second < x+60 for x in range hash[idx])):
+                    offlineList = offlineHash[idx]
+                    isOnline = True
+                    for iSecond in offlineList:
+                        if iSecond <= second < iSecond+60:
+                            isOnline = False
+                            break
+                    if isOnline:
+                        res[idx] +=1 
+            else:
+                listComp = [int(x[2:]) for x in third.split(" ")]
+                for idx in listComp:
+                    res[idx] +=1           
 
-        # first make a dictionary containg times when each id is offline
-        # we can use this to check against the times when a here message is sent
-
-        offline = defaultdict(list)
-
-        for e in range(len(events)):
-            if events[e][0] == "OFFLINE":
-                offline[int(events[e][2])].append(int(events[e][1]))
-
-        messages = [0]*numberOfUsers
-
-        for e in range(len(events)):
-
-            mentions_string = events[e][2]
-            timestamp = int(events[e][1])
-            
-            if events[e][0] == "MESSAGE":
-
-                if mentions_string == "ALL":
-                    messages = [x+1 for x in messages]
-
-                elif mentions_string == "HERE":
-                    for user in range(numberOfUsers):
-                        if user not in offline.keys() or all([timestamp < offline[user][x] or timestamp >= int(offline[user][x]) + 60 for x in range(len(offline[user]))]):
-                            messages[user] +=1
-                else:
-                    user_list = [int(x[2:]) for x in mentions_string.split(" ")]
-                    for user in user_list:
-                        messages[user] += 1
-
-        return messages
+        return res
