@@ -14,21 +14,31 @@ which is [1,2,6]. we se that max would be largest here so we just return the 6.
 
 In the case we have  [-4,-5,6]
 -4 * -5 * -6 0 -2
-
-max: -4   20    30  0   2 
-min: -4.  -5    -120  0  0
+-4, -4
+max: -4   20    30  0   0 
+min: -4.  -5    -120  0  -2
 
 '''
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        res = max(nums)
-        for i in range(len(nums)):
-            currSub = 1
-            for j in range(i,len(nums)):
-                currSub *= nums[j]
-                res = max(res,currSub)
-        return res
+        # res = max(nums)
+        # for i in range(len(nums)):
+        #     currSub = 1
+        #     for j in range(i,len(nums)):
+        #         currSub *= nums[j]
+        #         res = max(res,currSub)
+        # return res
         # prodSum =[]
+        res = float('-inf')
+        minVal,maxVal = 1,1
+        for i in nums:
+            tmp = i * maxVal
+            maxVal = max(tmp, i*minVal, i)
+            minVal = min(tmp, i*minVal, i)
+            res = max(res, maxVal)
+        return res
+
+
         minVal, maxVal = 1,1
         res = max(nums)
         for n in nums:
