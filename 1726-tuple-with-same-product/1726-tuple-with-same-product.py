@@ -9,14 +9,8 @@ class Solution:
             for j in range(i+1, len(nums)):
                 hash1[nums[i] * nums[j]] = hash1.get(nums[i] * nums[j], 0) +1
         count = 0
-        print(hash1)
-        print(math.comb(2,2))
         for i in hash1.values():
-            if i >=2:
-                count += math.comb(i,2) *8
-                print(count)
-                print(i)
-        
+            count += math.comb(i,2) *8
         return count
 
 
