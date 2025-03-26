@@ -66,6 +66,7 @@ class Solution:
                 midList.append(j)
         midList.sort()
         target = midList[(len(midList)//2)]
+        return sum(abs(target-i) // x for i in midList)
         for i in midList:
             res += abs(target-i) // x
         return res
