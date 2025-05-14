@@ -1,30 +1,31 @@
-# class Solution:
-#     def minZeroArray(self, nums: List[int], queries: List[List[int]]) -> int:
 class Solution:
     def minZeroArray(self, nums: List[int], queries: List[List[int]]) -> int:
-        n = len(nums)
-        total_sum = 0
-        k = 0
-        difference_array = [0] * (n + 1)
+        def possible(queries):
+            diff = [0] * (len(nums)+1)
+            for left, right, val in queries:
+                diff[left] -= val
+                diff[right+1] += val
 
-        # Iterate through nums
-        for index in range(n):
-            # Iterate through queries while current index of nums cannot equal zero
-            while total_sum + difference_array[index] < nums[index]:
-                k += 1
+            pref = [0] * len(nums)
+            pref[0] = diff[0]
+            for i in range(1, len(nums)):
+                pref[i] = pref[i-1] + diff[i]
 
-                # Zero array isn't formed after all queries are processed
-                if k > len(queries):
-                    return -1
+            for i in range(len(nums)):
+                if nums[i] + pref[i] > 0:
+                    return False
+            return True
 
-                left, right, val = queries[k - 1]
+        if all(x == 0 for x in nums):
+            return 0
 
-                # Process start and end of range
-                if right >= index:
-                    difference_array[max(left, index)] += val
-                    difference_array[right + 1] -= val
-
-            # Update prefix sum at current index
-            total_sum += difference_array[index]
-
-        return k
+        left, right = 0, len(queries) - 1
+        ans = -1
+        while left <= right:
+            mid = (left + right) // 2
+            if possible(queries[:mid+1]):
+                ans = mid + 1
+                right = mid - 1
+            else:
+                left = mid + 1
+        return ans
