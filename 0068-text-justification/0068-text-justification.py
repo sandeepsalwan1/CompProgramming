@@ -19,11 +19,8 @@ class Solution:
         totalAdd = 0
         for rIdx, i in enumerate(wordsList):
             lis, num = i[0], i[1]
-            if rIdx == len(wordsList) - 1:
+            if rIdx == len(wordsList) - 1 or len(lis) == 1:
                 i[0][-1] += " " * num
-                continue
-            if len(lis) == 1:
-                i[0][0] += " " * num
                 continue
             totalAdd, oddAdd = divmod(num, (len(lis) - 1))
             for idx, j in enumerate(i[0]):
