@@ -14,8 +14,7 @@ class Solution:
             else:
                 count += len(v)
             cur.append(v)
-        if cur:
-            wordsList.append([cur, maxWidth - count])
+        wordsList.append([cur, maxWidth - count])
         totalAdd = 0
         for rIdx, i in enumerate(wordsList):
             lis, num = i[0], i[1]
