@@ -19,8 +19,6 @@ class Solution:
         totalAdd = 0
         for rIdx, i in enumerate(wordsList):
             lis, num = i[0], i[1]
-            if not lis:
-                continue
             if rIdx == len(wordsList) - 1:
                 i[0][-1] += " " * num
                 continue
