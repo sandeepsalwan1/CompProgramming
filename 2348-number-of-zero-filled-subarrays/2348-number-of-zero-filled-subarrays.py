@@ -1,13 +1,17 @@
 class Solution:
     def zeroFilledSubarray(self, nums: List[int]) -> int:
-        zF = [0] * (len(nums))
+        # zF = [0] * (len(nums))
+        prev = 0
+        res = 0
         for i,v in enumerate(nums):
             if v == 0:
-                if i ==0: zF[i] =1; continue
-                zF[i] = zF[i-1] + 1
-        res = 0
-        for i,v in enumerate(zF):
-            res+= v
+                # if i ==0: prev =1; continue
+                prev += 1
+            else: prev = 0
+            res += prev
+        # res = 0
+        # for i,v in enumerate(zF):
+        #     res+= v
         return res
         # [0] 
 
