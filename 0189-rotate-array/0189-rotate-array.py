@@ -20,9 +20,27 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         res = [0] * len(nums)
-        for i in range(len(nums)):
-            res[(i+k)%len(nums)] = nums[i]
-        nums[:]=res
+        nums.reverse()
+        k%= len(nums)
+        print(nums)
+        l,r =0,k -1
+        while r > l:
+            nums[r],nums[l] =nums[l],nums[r]
+            r-=1
+            l+=1
+        l,r =k,len(nums)-1
+        while r > l:
+            nums[r],nums[l] =nums[l],nums[r]
+            r-=1
+            l+=1
+        # nums[:k].reverse()
+        # print(nums)
+
+        # nums[k:].reverse()
+
+        # for i in range(len(nums)):
+        #     res[(i+k)%len(nums)] = nums[i]
+        # nums[:]=res
 
         # k%= len(nums)
         # res = 
