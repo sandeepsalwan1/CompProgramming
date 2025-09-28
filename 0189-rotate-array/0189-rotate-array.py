@@ -19,8 +19,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        k%= len(nums)
-        nums[:] = nums[-k:] + nums[:-k] 
+        res = [0] * len(nums)
+        for i in range(len(nums)):
+            res[(i+k)%len(nums)] = nums[i]
+        nums[:]=res
+
+        # k%= len(nums)
+        # res = 
+        # nums[:] = nums[-k:] + nums[:-k] 
 
 
 
