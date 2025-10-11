@@ -5,7 +5,8 @@ class Solution:
         count = 0
         cur = []
         for i, v in enumerate(words):
-            if count + len(v) + 1 > maxWidth:
+            print(wordsList)
+            if count + len(v) >= maxWidth:
                 wordsList.append([cur, maxWidth - count])
                 cur = []
                 count = 0
@@ -15,7 +16,7 @@ class Solution:
                 count += len(v)
             cur.append(v)
         wordsList.append([cur, maxWidth - count])
-        totalAdd = 0
+        print(cur, wordsList)
         for rIdx, i in enumerate(wordsList):
             lis, num = i[0], i[1]
             if rIdx == len(wordsList) - 1 or len(lis) == 1:
