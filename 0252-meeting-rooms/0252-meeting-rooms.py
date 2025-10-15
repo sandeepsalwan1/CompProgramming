@@ -1,7 +1,7 @@
 class Solution:
     def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
         if len(intervals) <= 1: return True
-        intervals.sort(key = lambda x: x[0])
+        intervals.sort()
         
         newInterval= intervals[0]
         for i,(a,b) in enumerate(intervals):
