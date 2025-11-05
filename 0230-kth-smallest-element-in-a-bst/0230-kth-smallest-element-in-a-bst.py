@@ -25,7 +25,7 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        self.res= k
+        self.res= 0
         def dfs(cur):
             nonlocal k
             if not cur: return
@@ -36,8 +36,6 @@ class Solution:
             k-=1
             dfs(cur.right)
             return self.res
-
-
         return dfs(root)
 
 
