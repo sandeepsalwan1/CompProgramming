@@ -29,7 +29,7 @@ class Solution:
         
         def dfs(node):
             nonlocal k
-            if not node or self.result is not None:
+            if not node:
                 return
             
             # Left subtree (smaller values)
