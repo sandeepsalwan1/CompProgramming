@@ -25,19 +25,39 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-
-        self.res= 0
-        def dfs(cur):
+        self.result = None
+        
+        def dfs(node):
             nonlocal k
-            if not cur: return
-            dfs(cur.left)
-            if k==1:
-                k-=1
-                self.res= cur.val
-            k-=1
-            dfs(cur.right)
-            return self.res
-        return dfs(root)
+            if not node or self.result is not None:
+                return
+            
+            # Left subtree (smaller values)
+            dfs(node.left)
+            
+            # Process current node
+            k -= 1
+            if k == 0:
+                self.result = node.val
+                return  # Early exit!
+            
+            # Right subtree (larger values)
+            dfs(node.right)
+        
+        dfs(root)
+        return self.result
+        # self.res= 0
+        # def dfs(cur):
+        #     nonlocal k
+        #     if not cur: return
+        #     dfs(cur.left)
+        #     if k==1:
+        #         k-=1
+        #         self.res= cur.val
+        #     k-=1
+        #     dfs(cur.right)
+        #     return self.res
+        # return dfs(root)
 
 
 
