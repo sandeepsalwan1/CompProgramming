@@ -14,7 +14,7 @@ class Solution:
         def dfs(cur):
             if not cur:
                 return 0
-            left, right = 1+ self.left,  1+ self.right
+            left, right = 1+ cur.left,  1+ cur.right
             self.diam = max(self.diam, left+right)
             # dfs()
 
