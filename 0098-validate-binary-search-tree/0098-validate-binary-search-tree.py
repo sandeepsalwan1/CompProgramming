@@ -22,11 +22,28 @@
 
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def dfs(curr, l, r):
+        def dfs(curr, l,r):
             if not curr: return True
-            if curr.val <= l or curr.val >= r: return False
-            return dfs(curr.left, l, curr.val) and dfs(curr.right, curr.val, r)
-        return dfs(root, float('-inf'), float('inf'))
+            if not(l < curr.val < r): return False
+
+            return dfs(curr.left, l,curr.val) and dfs(curr.right, curr.val, r)
+
+        return dfs(root, float('-inf'),float('inf'))
+
+
+
+
+
+# N               O                  O                  O                  O   
+#                                     O                O                  O  O 
+#                                                                      -inf, 2 return true and true   
+#                                                                       1 is less
+#                                                                       return left and  
+                                                                                    
+
+# T                
+
+# left and right
 
 
 
@@ -48,11 +65,6 @@ class Solution:
 
 
 
-        # def dfs(curr,l,r):
-        #     if not curr: return True
-        #     if curr.val <= l or curr.val >= r: return False
-        #     return dfs(curr.left, l, curr.val) and dfs(curr.right, curr.val, r)
-        # return dfs(root, float('-inf'), float('inf'))
 
 
 
@@ -61,10 +73,49 @@ class Solution:
 
 
 
-        # def dfs(curr, l, r):
-        #     if not curr: return True 
-        #     if curr.val <= l or curr.val >= r : return False
-        #     return dfs(curr.left,l, curr.val) and dfs(curr.right, curr.val, r)
+#         def dfs(curr, l, r):
+#             if not curr: return True
+#             if curr.val <= l or curr.val >= r: return False
+#             return dfs(curr.left, l, curr.val) and dfs(curr.right, curr.val, r)
+#         return dfs(root, float('-inf'), float('inf'))
 
-        # return dfs(root, float('-inf'), float('inf'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#         # def dfs(curr,l,r):
+#         #     if not curr: return True
+#         #     if curr.val <= l or curr.val >= r: return False
+#         #     return dfs(curr.left, l, curr.val) and dfs(curr.right, curr.val, r)
+#         # return dfs(root, float('-inf'), float('inf'))
+
+
+
+
+
+
+
+
+#         # def dfs(curr, l, r):
+#         #     if not curr: return True 
+#         #     if curr.val <= l or curr.val >= r : return False
+#         #     return dfs(curr.left,l, curr.val) and dfs(curr.right, curr.val, r)
+
+#         # return dfs(root, float('-inf'), float('inf'))
 
