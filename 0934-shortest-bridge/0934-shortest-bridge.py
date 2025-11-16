@@ -21,12 +21,23 @@ class Solution:
                             grid[ra][ca]=0
                             seen.add((ra,ca))
             return res
+        visited = set()
+        def dfs(r,c):
+            if not(r in range(0,ROW) 
+            and c in range(0,COL) and grid[r][c]==1 
+            and (r,c) not in seen and (r,c) not in visited):
+                return
+            grid[r][c]=0
+            visited.add((r,c))
+            for dr,dc in directions:
+                dfs(r+dr,c+dc)
         self.cur =[]
         def bfs1():
-            q = deque(self.cur)
+            q = deque(visited)
             # res = []
             # print(self.cur,"a")
             level =0
+            print(q)
             while q:
                 for i in range(len(q)):
                     ro,co = q.popleft()
@@ -46,7 +57,7 @@ class Solution:
         for r in range(ROW):
             for c in range(COL):
                 if grid[r][c]==1:
-                    self.cur = bfs(r,c)
+                    dfs(r,c)
                     return bfs1()
                 else:
                     seen.add((r,c))
