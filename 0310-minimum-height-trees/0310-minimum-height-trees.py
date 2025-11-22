@@ -1,26 +1,29 @@
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
-        adj = [[] for _ in range(n)]
-        for u, v in edges:
-            adj[u].append(v)
-            adj[v].append(u)
+        if n == 1:
+            return [0]
 
-        def dfs(node, parent):
-            hgt = 0
-            for nei in adj[node]:
-                if nei == parent:
-                    continue
-                hgt = max(hgt, 1 + dfs(nei, node))
-            return hgt
+        adj = defaultdict(list)
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
 
-        minHgt = n
-        res = []
-        for i in range(n):
-            curHgt = dfs(i, -1)
-            if curHgt == minHgt:
-                res.append(i)
-            elif curHgt < minHgt:
-                res = [i]
-                minHgt = curHgt
+        edge_cnt = {}
+        mainLeaves = deque()
 
-        return res
+        for src, neighbors in adj.items():
+            edge_cnt[src] = len(neighbors)
+            if len(neighbors) == 1:
+                print('a')
+                mainLeaves.append(src)
+
+        while mainLeaves:
+            if n <= 2:
+                return list(mainLeaves)
+            for _ in range(len(mainLeaves)):
+                node = mainLeaves.popleft()
+                n -= 1
+                for nei in adj[node]:
+                    edge_cnt[nei] -= 1
+                    if edge_cnt[nei] == 1:
+                        mainLeaves.append(nei)
