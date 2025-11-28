@@ -7,8 +7,8 @@ class Solution:
                 j=stack.pop()
                 l=j-(stack[-1] if stack else -1)
                 r=i-j
-                res= (res+arr[j]*l*r)% (10**9+7)
+                res= (res+arr[j]*l*r)
             stack.append(i)
     
 
-        return res
+        return res % (10**9+7)
